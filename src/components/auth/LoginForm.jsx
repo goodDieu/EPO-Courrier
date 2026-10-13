@@ -7,6 +7,8 @@ const USERS = [
     { email: 'm.traore@epo.bf', password: 'Demo2026#', role: 'Chef SCC' },
     { email: 'a.sawadogo@epo.bf', password: 'Demo2026#', role: 'Agent de liaison' },
     { email: 'm.diakite@epo.bf', password: 'Demo2026#', role: 'Administrateur' },
+    { email: 'm.sam@epo.bf', password: 'Demo2026#', role: 'Sécrétaire Particulière DG' },
+    { email: 'm.koffi@epo.bf', password: 'Demo2026#', role: 'Sécrétaire Particulière SG' },
 ];
 
 export default function LoginForm() {
@@ -123,6 +125,12 @@ export default function LoginForm() {
                     case 'Administrateur':
                         window.location.href = '/admin/dashboard';
                         break;
+                    case 'Sécrétaire Particulière DG':
+                        window.location.href = '/sp_dg/dashboard';
+                        break;
+                    case 'Sécrétaire Particulière SG':
+                        window.location.href = '/sp_sg/dashboard';
+                        break;
                     default:
                         alert('Rôle non reconnu.');
                 }
@@ -163,29 +171,29 @@ export default function LoginForm() {
     };
 
     return (
-        <main className="flex items-center justify-center p-6 sm:p-12 bg-white">
+        <main className="flex items-center justify-center p-6 bg-white sm:p-12">
             <div className="w-full max-w-md animate-fade-in-up">
                 {/* Logo mobile */}
-                <div className="flex lg:hidden items-center gap-3 mb-8">
+                <div className="flex items-center gap-3 mb-8 lg:hidden">
                     <div className="w-12 h-12 rounded-xl bg-white border border-epo-slate-200 flex items-center justify-center p-1.5">
                         <img
                             src={logoEpo}
                             alt="EPO"
-                            className="w-full h-full object-contain"
+                            className="object-contain w-full h-full"
                         />
                     </div>
-                    <div className="text-epo-slate-700 font-bold text-lg">
+                    <div className="text-lg font-bold text-epo-slate-700">
                         EPO Courrier
                     </div>
                 </div>
 
                 {/* En-tête */}
                 <div className="mb-8">
-                    <div className="flex items-center gap-2 mb-2 text-epo-green-600 text-xs font-semibold uppercase tracking-widest">
+                    <div className="flex items-center gap-2 mb-2 text-xs font-semibold tracking-widest uppercase text-epo-green-600">
                         <i className="fas fa-hand-wave" />
                         Bienvenue
                     </div>
-                    <h1 className="text-3xl font-bold text-epo-slate-800 tracking-tight mb-2">
+                    <h1 className="mb-2 text-3xl font-bold tracking-tight text-epo-slate-800">
                         Connexion à la plateforme
                     </h1>
                     <p className="text-sm text-epo-slate-500">
@@ -196,15 +204,7 @@ export default function LoginForm() {
                 {/* Message d'erreur */}
                 {error && (
                     <div
-                        className="
-                            flex items-start gap-3
-                            px-4 py-3 mb-5
-                            bg-epo-red-50
-                            border border-epo-red-100
-                            rounded-lg
-                            text-epo-red-600
-                            text-sm
-                        "
+                        className="flex items-start gap-3 px-4 py-3 mb-5 text-sm border rounded-lg bg-epo-red-50 border-epo-red-100 text-epo-red-600"
                     >
                         <i className="fas fa-exclamation-circle mt-0.5 flex-shrink-0" />
                         <span>{error}</span>
@@ -227,7 +227,7 @@ export default function LoginForm() {
                             Adresse e-mail institutionnelle
                         </label>
                         <div className="relative">
-                            <i className="fas fa-user absolute left-4 top-1/2 -translate-y-1/2 text-epo-slate-400 text-sm pointer-events-none peer-focus:text-epo-green-500" />
+                            <i className="absolute text-sm -translate-y-1/2 pointer-events-none fas fa-user left-4 top-1/2 text-epo-slate-400 peer-focus:text-epo-green-500" />
                             <input
                                 id="email"
                                 type="email"
@@ -266,7 +266,7 @@ export default function LoginForm() {
                             Mot de passe
                         </label>
                         <div className="relative">
-                            <i className="fas fa-key absolute left-4 top-1/2 -translate-y-1/2 text-epo-slate-400 text-sm pointer-events-none" />
+                            <i className="absolute text-sm -translate-y-1/2 pointer-events-none fas fa-key left-4 top-1/2 text-epo-slate-400" />
                             <input
                                 id="password"
                                 type={showPassword ? 'text' : 'password'}
@@ -298,15 +298,7 @@ export default function LoginForm() {
                                 aria-label={
                                     showPassword ? 'Masquer le mot de passe' : 'Afficher le mot de passe'
                                 }
-                                className="
-                                    absolute right-3 top-1/2 -translate-y-1/2
-                                    w-8 h-8
-                                    flex items-center justify-center
-                                    text-epo-slate-400
-                                    rounded-md
-                                    transition
-                                    hover:text-epo-slate-700 hover:bg-epo-slate-100
-                                "
+                                className="absolute flex items-center justify-center w-8 h-8 transition -translate-y-1/2 rounded-md right-3 top-1/2 text-epo-slate-400 hover:text-epo-slate-700 hover:bg-epo-slate-100"
                             >
                                 <i className={`fas ${showPassword ? 'fa-eye-slash' : 'fa-eye'} text-sm`} />
                             </button>
@@ -314,18 +306,18 @@ export default function LoginForm() {
                     </div>
 
                     {/* Options */}
-                    <div className="flex items-center justify-between flex-wrap gap-3">
-                        <label className="flex items-center gap-2 text-sm text-epo-slate-600 cursor-pointer select-none">
+                    <div className="flex flex-wrap items-center justify-between gap-3">
+                        <label className="flex items-center gap-2 text-sm cursor-pointer select-none text-epo-slate-600">
                             <input
                                 type="checkbox"
-                                className="w-4 h-4 rounded border-epo-slate-300 text-epo-green-600 focus:ring-epo-green-500/30 cursor-pointer"
+                                className="w-4 h-4 rounded cursor-pointer border-epo-slate-300 text-epo-green-600 focus:ring-epo-green-500/30"
                             />
                             Se souvenir de moi
                         </label>
                         <a
                             href="#"
                             onClick={handleForgotPassword}
-                            className="text-sm font-medium text-epo-green-600 hover:text-epo-green-700 hover:underline transition"
+                            className="text-sm font-medium transition text-epo-green-600 hover:text-epo-green-700 hover:underline"
                         >
                             Mot de passe oublié ?
                         </a>
@@ -352,13 +344,13 @@ export default function LoginForm() {
                     >
                         {loading ? (
                             <>
-                                <span className="w-4 h-4 rounded-full border-2 border-white/30 border-t-white animate-spin" />
+                                <span className="w-4 h-4 border-2 rounded-full border-white/30 border-t-white animate-spin" />
                                 <span className="opacity-70">Connexion en cours…</span>
                             </>
                         ) : (
                             <>
                                 <span>Se connecter</span>
-                                <i className="fas fa-arrow-right text-sm" />
+                                <i className="text-sm fas fa-arrow-right" />
                             </>
                         )}
                     </button>
@@ -392,11 +384,11 @@ export default function LoginForm() {
                 </button>
 
                 {/* Footer */}
-                <div className="mt-7 pt-5 border-t border-epo-slate-200 text-center text-xs text-epo-slate-500 leading-relaxed">
+                <div className="pt-5 text-xs leading-relaxed text-center border-t mt-7 border-epo-slate-200 text-epo-slate-500">
                     Un problème pour vous connecter ?{' '}
                     <a
                         href="#"
-                        className="text-epo-green-600 font-medium hover:underline"
+                        className="font-medium text-epo-green-600 hover:underline"
                     >
                         Contactez le support DSI
                     </a>

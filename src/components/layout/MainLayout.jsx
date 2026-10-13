@@ -11,6 +11,8 @@ const ROLE_LABELS = {
     scc: 'Chef SCC',
     liaison: 'Agent de liaison',
     admin: 'Administrateur',
+    sp_sg: "Sécrétaire Particulière SG",
+    sp_dg: "Sécrétaire Particulière DG"
 };
 
 /**

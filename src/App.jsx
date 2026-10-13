@@ -32,6 +32,16 @@ import RemisesPage from './pages/liaison/RemisesPage.jsx';
 import EnAttentePage from './pages/liaison/EnAttentePage.jsx';
 import PlanningPage from './pages/liaison/PlanningPage.jsx';
 import DechargesPage from './pages/liaison/DechargesPage.jsx';
+import PostVisaPage from './pages/sp-dg/PostVisaPage.jsx';
+import DashboardSPDG from './pages/sp-dg/DashboardSPDG.jsx';
+import CourriersRecusPage from './pages/sp-dg/CourriersRecusPage.jsx';
+import IntroductionPage from './pages/sp-dg/IntroductionPage.jsx';
+import DashboardSPSG from './pages/sp-sg/DashboardSPSG.jsx';
+import CourriersRecusSgPage from './pages/sp-sg/CourriersRecusSgPage.jsx';
+import IntroductionSgPage from './pages/sp-sg/IntroductionSgPage.jsx';
+import TriPage from './pages/sp-sg/TriPage.jsx';
+import SuiviPage from './pages/sp-sg/SuiviPage.jsx';
+import InstructionsPage from './pages/sp-sg/InstructionsPage.jsx';
 
 export default function App() {
     return (
@@ -73,6 +83,24 @@ export default function App() {
                 <Route path="/liaison/en-attente" element={<EnAttentePage />} />
                 <Route path="/liaison/planning" element={<PlanningPage />} />
                 <Route path="/liaison/decharges" element={<DechargesPage />} />
+
+
+                <Route path="/sp_sg/dashboard" element={<DashboardSPSG />} />
+                <Route path="/sp_sg/courriers-recus" element={<CourriersRecusSgPage />} />
+                <Route path="/sp_sg/introduction" element={<IntroductionSgPage />} />
+                <Route path="/sp_sg/tri" element={<TriPage />} />
+                <Route path="/sp_sg/suivi" element={<SuiviPage />} />
+                <Route path="/sp_sg/instructions" element={<InstructionsPage />} />
+
+
+
+
+                <Route path="/sp_dg/post-visa" element={<PostVisaPage />} />
+                <Route path="/sp_dg/dashboard" element={<DashboardSPDG />} />
+                <Route path="/sp_dg/courriers-recus" element={<CourriersRecusPage />} />
+                <Route path="/sp_dg/introduction" element={<IntroductionPage />} />
+
+
 
 
             </Route>

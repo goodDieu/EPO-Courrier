@@ -29,8 +29,9 @@ export default function ArriveesPage() {
     const [selectedArrivee, setSelectedArrivee] = useState(null);
     const [editArrivee, setEditArrivee] = useState(null);
 
-    /* ... (filtrage identique à avant) ... */
-
+    /* ============================================================
+       FILTRAGE
+       ============================================================ */
     const listeFiltree = useMemo(() => {
         let result = ARRIVEES;
 
@@ -75,24 +76,27 @@ export default function ArriveesPage() {
        ============================================================ */
 
     const handleTransmettre = (arrivee) => {
+        // En prod : POST /api/transmissions
         alert(
-            `Transmission du courrier ${arrivee.id} au SP-SG\n\n` +
-            `→ Une transmission sera créée automatiquement\n` +
-            `→ Le courrier passera à l'état "Transmis SP-SG"\n` +
-            `→ Le SP-SG sera notifié`
+            `✅ Courrier ${arrivee.id} transmis au SP-SG\n\n` +
+            `→ Le courrier a été transmis au Secrétariat Particulier du SG\n` +
+            `→ La fiche d'accompagnement a été imprimée\n` +
+            `→ Le SP-SG sera notifié\n` +
+            `→ Délai de référence : 30 min (§9.1)`
         );
         setSelectedArrivee(null);
     };
 
     const handleModifier = (arrivee) => {
-        // Ferme la modale de détail et ouvre la modale d'édition
         setSelectedArrivee(null);
         setEditArrivee(arrivee);
     };
 
     return (
         <div className="w-full min-w-0">
-            {/* EN-TÊTE (identique) */}
+            {/* ============================================
+                EN-TÊTE
+                ============================================ */}
             <div className="flex flex-col gap-3 mb-6 sm:flex-row sm:items-start sm:justify-between">
                 <div>
                     <h1 className="text-2xl font-bold tracking-tight text-epo-slate-900">
@@ -117,10 +121,14 @@ export default function ArriveesPage() {
                 </div>
             </div>
 
-            {/* KPI */}
+            {/* ============================================
+                KPI
+                ============================================ */}
             <ArriveesKpi arrivees={ARRIVEES} />
 
-            {/* FILTRES */}
+            {/* ============================================
+                FILTRES
+                ============================================ */}
             <div className="flex flex-wrap items-center gap-3 p-4 mb-4 bg-white border rounded-xl border-epo-slate-200 shadow-soft">
                 <div className="relative flex-1 min-w-[200px]">
                     <i className="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-epo-slate-400 text-[12px]" />
@@ -149,7 +157,9 @@ export default function ArriveesPage() {
                 )}
             </div>
 
-            {/* TABLEAU */}
+            {/* ============================================
+                TABLEAU
+                ============================================ */}
             <ArriveesTable
                 arrivees={listeFiltree}
                 onVoir={setSelectedArrivee}

@@ -13,27 +13,27 @@ export const NAVIGATION = {
             label: 'Menu principal',
             items: [
                 { icon: 'fa-chart-pie', label: 'Tableau de bord', path: '/sg/dashboard' },
-                { icon: 'fa-inbox', label: 'Entrants', path: '/sg/courriers-entrants', badge: { count: 12, variant: 'red' } },
-                { icon: 'fa-paper-plane', label: 'Sortants', path: '/sg/courriers-sortants', badge: { count: 4, variant: 'amber' } },
+                { icon: 'fa-inbox', label: 'Arrivés', path: '/sg/courriers-entrants', badge: { count: 12, variant: 'red' } },
+                { icon: 'fa-paper-plane', label: 'Depart', path: '/sg/courriers-sortants', badge: { count: 4, variant: 'amber' } },
                 { icon: 'fa-file-alt', label: 'Actes administratifs', path: '/sg/actes', badge: { count: 8, variant: 'green' } },
-                { icon: 'fa-exchange-alt', label: 'Transmissions', path: '/sg/transmissions', badge: { count: 3, variant: 'red' } },
-                { icon: 'fa-archive', label: 'Archives', path: '/sg/archives' },
+                // { icon: 'fa-exchange-alt', label: 'Transmissions', path: '/sg/transmissions', badge: { count: 3, variant: 'red' } },
+                // { icon: 'fa-archive', label: 'Archives', path: '/sg/archives' },
             ],
         },
         {
             label: 'Outils',
             items: [
                 { icon: 'fa-search', label: 'Recherche avancée', path: '/sg/recherche-avancee' },
-                { icon: 'fa-chart-bar', label: 'Statistiques', path: '/sg/statistiques' },
-                { icon: 'fa-calendar-alt', label: 'Échéances', path: '/sg/echeances', badge: { count: 6, variant: 'red' } },
+                // { icon: 'fa-chart-bar', label: 'Statistiques', path: '/sg/statistiques' },
+                // { icon: 'fa-calendar-alt', label: 'Échéances', path: '/sg/echeances', badge: { count: 6, variant: 'red' } },
             ],
         },
         {
             label: 'Administration',
             items: [
-                { icon: 'fa-users-cog', label: 'Utilisateurs', path: '/sg/utilisateurs' },
-                { icon: 'fa-sitemap', label: 'Structures', path: '/sg/structures' },
-                { icon: 'fa-sliders-h', label: 'Paramétrage', path: '/sg/parametrage' },
+                // { icon: 'fa-users-cog', label: 'Utilisateurs', path: '/sg/utilisateurs' },
+                // { icon: 'fa-sitemap', label: 'Structures', path: '/sg/structures' },
+                // { icon: 'fa-sliders-h', label: 'Paramétrage', path: '/sg/parametrage' },
             ],
         },
     ],
@@ -45,7 +45,7 @@ export const NAVIGATION = {
                 { icon: 'fa-chart-pie', label: 'Tableau de bord', path: '/dg/dashboard' },
                 { icon: 'fa-pen', label: 'À signer', path: '/dg/a-signer', badge: { count: 7, variant: 'red' } },
                 { icon: 'fa-check-double', label: 'À valider', path: '/dg/a-valider', badge: { count: 4, variant: 'amber' } },
-                { icon: 'fa-lock', label: 'Confidentiel', path: '/dg/confidentiel', badge: { count: 2, variant: 'red' } },
+                // { icon: 'fa-lock', label: 'Confidentiel', path: '/dg/confidentiel', badge: { count: 2, variant: 'red' } },
                 { icon: 'fa-history', label: 'Rejetés', path: '/dg/rejetes', badge: { count: 3, variant: 'red' } },
                 { icon: 'fa-file-alt', label: 'Actes signés', path: '/dg/actes-signes' },
                 { icon: 'fa-calendar-alt', label: 'Échéances', path: '/dg/echeances', badge: { count: 5, variant: 'red' } },
@@ -102,6 +102,57 @@ export const NAVIGATION = {
                 { icon: 'fa-database', label: 'Sauvegardes', path: '/admin/sauvegardes' },
             ],
         },
+    ],
+    sp_sg: [
+        {
+            label: 'Menu principal',
+            items: [
+                { icon: 'fa-chart-pie', label: 'Tableau de bord', path: '/sp_sg/dashboard' },
+                { icon: 'fa-inbox', label: 'Courriers reçus', path: '/sp_sg/courriers-recus', badge: { count: 8, variant: 'red' } },
+                { icon: 'fa-th', label: 'Tri & classement', path: '/sp_sg/tri', badge: { count: 5, variant: 'amber' } },
+                { icon: 'fa-camera', label: 'Numérisation', path: '/sp_sg/scan', badge: { count: 3, variant: 'green' } },
+                { icon: 'fa-user-tie', label: 'Introduction au SG', path: '/sp_sg/introduction', badge: { count: 4, variant: 'red' } },
+                { icon: 'fa-stream', label: 'Suivi des dossiers', path: '/sp_sg/suivi' },
+            ],
+        },
+        {
+            label: 'Suivi',
+            items: [
+                { icon: 'fa-comment-dots', label: 'Instructions du SG', path: '/sp_sg/instructions', badge: { count: 5, variant: 'red' } },
+                { icon: 'fa-clock', label: 'Échéances SG', path: '/sp_sg/echeances' },
+                { icon: 'fa-history', label: 'Historique', path: '/sp_g/historique' },
+            ],
+        },
+    ],
+
+    sp_dg: [
+        {
+            label: 'Menu principal',
+            items: [
+                { icon: 'fa-chart-pie', label: 'Tableau de bord', path: '/sp_dg/dashboard' },
+                { icon: 'fa-inbox', label: 'Courriers reçus', path: '/sp_dg/courriers-recus', badge: { count: 7, variant: 'red' } },
+                { icon: 'fa-pen', label: 'Introduction au DG', path: '/sp_dg/introduction', badge: { count: 4, variant: 'red' } },
+                { icon: 'fa-check-double', label: 'Coche post-visa', path: '/sp_dg/post-visa', badge: { count: 3, variant: 'amber' } },
+                { icon: 'fa-file-signature', label: 'Signés / Rejetés', path: '/sp_dg/signatures', badge: { count: 2, variant: 'green' } },
+                { icon: 'fa-lock', label: 'Confidentiels', path: '/sp_dg/confidentiels', badge: { count: 2, variant: 'red' } },
+            ],
+        },
+        {
+            label: 'Suivi',
+            items: [
+                { icon: 'fa-clock', label: 'Échéances DG', path: '/sp_dg/echeances' },
+                { icon: 'fa-print', label: 'Impressions', path: '/sp_dg/impressions' },
+                { icon: 'fa-history', label: 'Historique', path: '/sp_dg/historique' },
+            ],
+        },
+    ],
+    charge_etude_sg: [
+        {
+            label: "Menu principal",
+            items : [
+
+            ]
+        }
     ],
 };
 

@@ -3,6 +3,7 @@ import { useState, useMemo } from 'react';
 import { Modal, Button } from '../ui';
 import ClassificationBadge from './ClassificationBadge';
 import PieceUploader from './PieceUploader';
+import FicheAccompagnementPreview from './FicheAccompagnementPreview';
 import {
     CLASSIFICATIONS,
     NATURES_ENTRANTS,
@@ -56,13 +57,35 @@ export default function ArriveeFormModal({ open, onClose }) {
         return SERIES_NUMEROTATION.ordinaire.prochain;
     }, [classification]);
 
-    // Validation de l'étape 1
+    // Validation des étapes
     const canNext1 = objet.trim().length > 3 && expediteur.trim().length > 2;
 
     const canNext = () => {
         if (etape === 0) return canNext1;
         if (etape === 1) return pieces.length > 0;
         return true;
+    };
+
+    /* ============================================================
+       TRANSMISSION AU SP-SG — SIMULATION SIMPLE
+       ============================================================ */
+    const handleTransmettre = () => {
+        const numero = numeroPrevisionnel;
+
+        // Simulation de succès
+        alert(
+            `✅ Courrier transmis au SP-SG\n\n` +
+            `Numéro d'ordre : ${numero}\n` +
+            `Destinataire : Secrétariat Particulier du SG\n` +
+            `Agent de liaison : M. SAWADOGO Bakary\n` +
+            `Délai de référence : 30 min (§9.1)\n\n` +
+            `→ Le courrier a été enregistré et transmis au SP-SG\n` +
+            `→ La fiche d'accompagnement a été imprimée\n` +
+            `→ Le SP-SG sera notifié`
+        );
+
+        reset();
+        onClose();
     };
 
     return (
@@ -93,8 +116,12 @@ export default function ArriveeFormModal({ open, onClose }) {
                             <i className="fas fa-arrow-right ml-1.5" />
                         </Button>
                     ) : (
-                        <Button variant="primary" icon="fa-save">
-                            Enregistrer le courrier
+                        <Button
+                            variant="primary"
+                            icon="fa-paper-plane"
+                            onClick={handleTransmettre}
+                        >
+                            Transmettre au SP-SG
                         </Button>
                     )}
                 </>
@@ -286,17 +313,19 @@ function EtapeInfos({
                 <i className="fas fa-hashtag text-epo-slate-400 mt-0.5" />
                 <div className="text-[12px] text-epo-slate-600">
                     Numéro d'ordre prévisionnel : <strong className="font-mono text-epo-slate-800">
-                        {classification === 'confidentiel'
-                            ? SERIES_NUMEROTATION.confidentiel.prochain
-                            : classification === 'urgent'
-                                ? SERIES_NUMEROTATION.urgent.prochain
-                                : SERIES_NUMEROTATION.ordinaire.prochain}
+                        {numeroPrevisionnelLabel(classification)}
                     </strong>
                     {' '}({classification === 'confidentiel' ? 'série SP-DG' : 'série SCC'} · RG-34 à 36)
                 </div>
             </div>
         </div>
     );
+}
+
+function numeroPrevisionnelLabel(classification) {
+    if (classification === 'confidentiel') return SERIES_NUMEROTATION.confidentiel.prochain;
+    if (classification === 'urgent') return SERIES_NUMEROTATION.urgent.prochain;
+    return SERIES_NUMEROTATION.ordinaire.prochain;
 }
 
 /* ============================================================
@@ -340,13 +369,12 @@ function EtapeRecap({
     dateDocument, classification, nature, pieces,
     observation, setObservation,
 }) {
-    const c = CLASSIFICATIONS[classification];
     const n = NATURES_ENTRANTS[nature];
 
     return (
         <div>
             <h3 className="text-[14px] font-semibold mb-3 text-epo-slate-800">
-                Récapitulatif avant enregistrement
+                Récapitulatif avant transmission
             </h3>
 
             {/* Numéro */}
@@ -398,10 +426,46 @@ function EtapeRecap({
                 />
             </FormField>
 
-            <div className="flex items-start gap-2 p-3 mt-3 rounded-lg bg-epo-slate-50">
-                <i className="fas fa-arrow-right text-epo-slate-400 mt-0.5" />
-                <div className="text-[12px] text-epo-slate-600">
-                    Le courrier sera automatiquement <strong>transmis au SP-SG</strong> après enregistrement (délai de référence : 30 min - §9.1).
+            {/* Aperçu de la fiche d'accompagnement */}
+            <div className="mt-5">
+                <div className="flex items-center gap-2 mb-3">
+                    <i className="fas fa-file-alt text-epo-green-600" />
+                    <h4 className="text-[13px] font-semibold text-epo-slate-800">
+                        Fiche d'accompagnement (aperçu)
+                    </h4>
+                    <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-epo-green-50 text-epo-green-700 text-[10px] font-semibold">
+                        <i className="fas fa-print text-[8px]" />
+                        Sera imprimée et jointe
+                    </span>
+                </div>
+
+                <FicheAccompagnementPreview
+                    arrivee={{ objet, expediteur }}
+                    numero={numero}
+                />
+
+                <div className="flex items-start gap-2 p-3 mt-3 rounded-lg bg-epo-slate-50">
+                    <i className="fas fa-info-circle text-epo-slate-400 mt-0.5" />
+                    <div className="text-[11.5px] text-epo-slate-600">
+                        Cette fiche accompagnera le courrier physique tout au long de son circuit (§9.1).
+                        Les sections <strong>« Avis motivé du SG »</strong>, <strong>« Décision du DG »</strong> et
+                        {' '}<strong>« Observations finales »</strong> seront renseignées respectivement par le SG,
+                        le DG et la direction destinataire.
+                    </div>
+                </div>
+            </div>
+
+            {/* Note de transmission */}
+            <div className="flex items-start gap-2 p-3 mt-4 border rounded-lg bg-epo-green-50 border-epo-green-200">
+                <i className="fas fa-paper-plane text-epo-green-600 mt-0.5" />
+                <div className="text-[12px] text-epo-green-900">
+                    En cliquant sur <strong>« Transmettre au SP-SG »</strong>, le courrier sera :
+                    <ul className="mt-1.5 flex flex-col gap-0.5 list-disc list-inside">
+                        <li>Enregistré au registre des arrivées avec son numéro d'ordre</li>
+                        <li>Associé à la fiche d'accompagnement imprimée</li>
+                        <li>Transmis physiquement au SP-SG via un agent de liaison</li>
+                        <li>Suivi dans le circuit SG/DG selon le §9.1</li>
+                    </ul>
                 </div>
             </div>
         </div>

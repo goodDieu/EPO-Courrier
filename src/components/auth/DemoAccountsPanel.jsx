@@ -41,6 +41,22 @@ const DEMO_ACCOUNTS = [
         initials: 'AD',
         color: '#E30613',
     },
+       {
+        email: 'm.koffi@epo.bf',
+        password: 'Demo2026#',
+        name: 'KOFFI Lili',
+        role: 'Sécrétaire Particulière SG',
+        initials: 'SPSG',
+        color: '#E30613',
+    },
+       {
+        email: 'm.sam@epo.bf',
+        password: 'Demo2026#',
+        name: 'SAM Ida',
+        role: 'Sécrétaire Particulière DG',
+        initials: 'SPDG',
+        color: '#E30613',
+    },
 ];
 
 export default function DemoAccountsPanel({ onSelect }) {
@@ -83,7 +99,7 @@ export default function DemoAccountsPanel({ onSelect }) {
                     "
                 >
                     {/* En-tête */}
-                    <div className="sticky top-0 bg-white z-10 flex items-center justify-between px-4 py-3 border-b border-epo-slate-200">
+                    <div className="sticky top-0 z-10 flex items-center justify-between px-4 py-3 bg-white border-b border-epo-slate-200">
                         <span className="flex items-center gap-2 text-sm font-semibold text-epo-slate-800">
                             <i className="fas fa-key text-epo-green-500" />
                             Comptes de démonstration
@@ -91,9 +107,9 @@ export default function DemoAccountsPanel({ onSelect }) {
                         <button
                             type="button"
                             onClick={() => setOpen(false)}
-                            className="w-6 h-6 flex items-center justify-center text-epo-slate-400 hover:text-epo-slate-700 hover:bg-epo-slate-100 rounded transition"
+                            className="flex items-center justify-center w-6 h-6 transition rounded text-epo-slate-400 hover:text-epo-slate-700 hover:bg-epo-slate-100"
                         >
-                            <i className="fas fa-times text-sm" />
+                            <i className="text-sm fas fa-times" />
                         </button>
                     </div>
 
@@ -117,7 +133,7 @@ export default function DemoAccountsPanel({ onSelect }) {
                                 "
                             >
                                 <div
-                                    className="w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold text-white flex-shrink-0"
+                                    className="flex items-center justify-center flex-shrink-0 text-xs font-bold text-white rounded-full w-9 h-9"
                                     style={{ backgroundColor: acc.color }}
                                 >
                                     {acc.initials}

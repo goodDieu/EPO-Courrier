@@ -41,5 +41,7 @@ function detectRoleKey(user) {
     if (email.includes('traore')) return 'scc';
     if (email.includes('sawadogo')) return 'liaison';
     if (email.includes('diakite')) return 'admin';
+    if (email.includes('koffi')) return 'sp_sg';
+    if (email.includes('sam')) return 'sp_dg';
     return 'sg';
 }

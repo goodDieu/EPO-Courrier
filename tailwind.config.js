@@ -16,7 +16,7 @@ export default {
                         200: '#9bd4b0',
                         300: '#6fc48f',
                         400: '#4db574',
-                        500: '#009A44', // Vert principal du logo
+                        500: '#009A44',
                         600: '#008a3d',
                         700: '#007a34',
                         800: '#006b2c',
@@ -29,7 +29,7 @@ export default {
                         200: '#f89fa6',
                         300: '#f47882',
                         400: '#ef5a66',
-                        500: '#E30613', // Rouge principal du logo
+                        500: '#E30613',
                         600: '#d10511',
                         700: '#b8040f',
                         800: '#a0030d',
@@ -42,7 +42,7 @@ export default {
                         200: '#ffed8a',
                         300: '#ffe55c',
                         400: '#ffde3d',
-                        500: '#FFD100', // Jaune principal du logo
+                        500: '#FFD100',
                         600: '#e6bc00',
                         700: '#cca700',
                         800: '#b39200',
@@ -57,7 +57,7 @@ export default {
                         400: '#8492a6',
                         500: '#5d6b7e',
                         600: '#475264',
-                        700: '#3C4653', // Gris principal du logo
+                        700: '#3C4653',
                         800: '#2c3440',
                         900: '#1e242c',
                     },
