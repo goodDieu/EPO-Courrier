@@ -1,0 +1,38 @@
+export const KPIS_SG = [
+    {
+        id: 'kpi-a-valider',
+        label: 'À valider / signer',
+        value: 14,
+        variant: 'urgent',
+        icon: 'fa-clock',
+        change: '+3 vs hier',
+        trend: 'up',
+    },
+    {
+        id: 'kpi-attente-imputation',
+        label: "En attente d'imputation",
+        value: 8,
+        variant: 'warning',
+        icon: 'fa-hourglass-half',
+        change: 'Stable',
+        trend: 'flat',
+    },
+    {
+        id: 'kpi-post-visa',
+        label: 'Post-visa (suivi SG)',
+        value: 6,
+        variant: 'info',
+        icon: 'fa-check-double',
+        change: '4 signés / 2 rejetés',
+        trend: 'flat',
+    },
+    {
+        id: 'kpi-echeances',
+        label: 'Échéances < 24h',
+        value: 5,
+        variant: 'success',
+        icon: 'fa-calendar-check',
+        change: '2 critiques',
+        trend: 'down',
+    },
+];

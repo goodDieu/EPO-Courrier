@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html {
+        font-family: 'Atkinson Hyperlegible Next Variable', system-ui, -apple-system, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+        margin: 0;
+        min-height: 100vh;
+        background-color: theme('colors.ground.DEFAULT');
+        color: theme('colors.epo.slate.800');
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    /* Focus clavier toujours visible (boutons, liens, éléments cliquables) */
+    :focus-visible {
+        outline: 2px solid theme('colors.epo.green.700');
+        outline-offset: 2px;
+    }
+
+    /* Les champs de saisie gèrent leur propre anneau de focus */
+    input:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible {
+        outline: none;
+    }
+
+    /* Surfaces navigateur aux couleurs de l'application */
+    ::selection {
+        background: theme('colors.epo.green.100');
+        color: theme('colors.epo.green.900');
+    }
+
+    input,
+    textarea {
+        caret-color: theme('colors.epo.green.700');
+    }
+
+    /* Chiffres alignés dans les tableaux */
+    table {
+        font-variant-numeric: tabular-nums;
+    }
+
+    /* Première colonne des tableaux (n° de courrier, d'acte…) : jamais coupée */
+    td:first-child {
+        white-space: nowrap;
+    }
+
+    /* Barre de défilement */
+    ::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+    }
+    ::-webkit-scrollbar-track {
+        background: theme('colors.epo.slate.100');
+    }
+    ::-webkit-scrollbar-thumb {
+        background: theme('colors.epo.slate.300');
+        border-radius: 5px;
+        border: 2px solid theme('colors.epo.slate.100');
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background: theme('colors.epo.slate.400');
+    }
+
+    /* Respect du réglage système "réduire les animations" */
+    @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
+    }
+}
